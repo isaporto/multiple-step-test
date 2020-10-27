@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MultipleStepTest</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <title>Decode Juris</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,10 +13,7 @@
 
   <body>
     <div id="page-container">
-      <%= render 'shared/navbar' %>
-      <div id="content-wrap">
-        <%= yield %>
-      </div>
+      <%= yield %>
       <%= render 'shared/flashes' %>
     </div>
   </body>

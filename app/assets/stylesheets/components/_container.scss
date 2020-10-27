@@ -1,0 +1,165 @@
+// standard containers
+body {
+  line-height: 1rem;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.flex-s-between {
+  display: flex;
+  justify-content: space-between;
+}
+.sign-step2 {
+  display: none;
+}
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+#content-wrap {
+  padding: $menu-padding;
+  padding-left: $menu-width + $menu-padding;
+  padding-top: $nav-dash-height + $menu-padding;
+  transition: padding-left .2s;
+  background: $gray;
+  min-height: 100vh;
+  &.home {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    padding-top: $nav-height;
+    padding-bottom: $footer-height;
+    background: url('pattern.png') no-repeat, $decode-orange;
+    background-size: 130%;
+    background-position: 0 120%;
+    min-height: 100vh;
+    width: 100%;
+  }
+}
+
+// home divs
+.process {
+  height: 30rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    color: white;
+    font-weight: 800;
+  }
+}
+.how-it-works {
+  & > div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+  }
+  background: white;
+}
+.example div {
+  width: 80%;
+  height: 20rem;
+  background: gray;
+  margin: 2rem 0;
+  border-radius: .4rem;
+}
+.content {
+  h2 {
+    color: $decode-orange;
+    font-weight: 800;
+  }
+}
+.example, .content {
+  padding: 0 4rem;
+}
+
+// form containers
+.content-devise {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .logo {
+    width: 8rem;
+  }
+}
+.form-container {
+  background: white;
+  position: relative;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > div {
+    width: 100%;
+  }
+  h2 {
+    font-weight: 600;
+    color: $decode-orange;
+    text-align: center;
+  }
+  .btn-orange {
+    max-width: 15rem;
+  }
+  .form-actions {
+    display: flex;
+    justify-content: center;
+  }
+}
+.devise-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+// tabs from registration
+.tab {
+  display: none;
+}
+.current-tab {
+  display: block;
+}
+
+// doc index containers
+.dash-box {
+  background: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, .2);
+}
+#doc-list {
+  margin-top: 2rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .flex-center {
+    flex-direction: column;
+  }
+}
+@media (max-width: 767px) {
+  .flex-s-between {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #content-wrap {
+    padding: 1rem;
+  }
+  .menu.minimized ~ div#content-wrap {
+    padding: 1rem;
+    padding-bottom: $nav-dash-height + 1rem;  
+  }
+  .content-devise {
+    grid-template-columns: 1fr;
+  }
+  .form-container {
+    border-radius: 1rem;
+    position: relative;
+    bottom: 1rem;
+  }
+}

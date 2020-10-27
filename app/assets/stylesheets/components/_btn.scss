@@ -1,0 +1,39 @@
+.btn-orange {
+  background: $decode-orange;
+  padding: 0.3rem 2rem;
+  border-radius: 0.8rem;
+  line-height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 2.5rem;
+  transition: background-color 0.3s;
+  border: none;
+  &:hover {
+    text-decoration: none;
+    background: $orange;
+    color: white;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(240, 133, 0, .4);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+    &:hover {
+      background: $decode-orange;
+    }
+  }
+}
+.link-orange {
+  color: $decode-orange;
+  font-weight: 900;
+  line-height: 3rem;
+  transition: color .2s;
+  &:hover, &:focus {
+    color: $orange;
+    text-decoration: none;
+  }
+}

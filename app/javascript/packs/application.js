@@ -7,6 +7,8 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require('@client-side-validations/client-side-validations')
+require('@client-side-validations/simple-form/dist/simple-form.bootstrap4')
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -32,3 +34,5 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
 });
+
+import "controllers"

@@ -1,25 +1,41 @@
-<h2>Sign up</h2>
+<div class="content-devise">
+  <div class="form-container">
+    <h2>Sign up</h2>
+    <div>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, data: { controller: "form" }) do |f| %>
+        <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+        <div class="tab" data-target="form.tab">
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" },
+                      validate: true %>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" },
+                      validate: true %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+        <div class="tab" data-target="form.tab">
+          <%= f.input :role, collection: %w[pj manager],
+                      validate: true %>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-orange" type="button" id="prevBtn" data-action="form#nextPrev" data-target="form.prevBtn">Previous</button>
+          <button class="btn-orange" type="button" id="nextBtn" data-action="form#nextPrev" data-target="form.nextBtn">Next</button>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div class="banner-form">
+    <h3>Get Started!</h3>
+    <p>Already have an account?</p>
+    <%= link_to "Sign in", new_session_path(resource_name), class: "btn-white" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
