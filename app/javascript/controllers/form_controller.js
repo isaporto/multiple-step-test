@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "span", "fileInput", "tab", "prevBtn", "nextBtn" ]
+  static targets = ["span", "fileInput", "tab", "prevBtn", "nextBtn", "form"]
 
   initialize() {
     // Current tab is set to be the first tab -> 0
@@ -11,7 +11,7 @@ export default class extends Controller {
   nextPrev(e) {
     // if the form is valid then go to the next tab else don't
     let valid = true;
-    $('input:visible, select:visible').each(function() {
+    $('[data-validate]:input:visible').each(function () {
       const settings = window[this.form.id].ClientSideValidations.settings;
       if (!$(this).isValid(settings.validators)) {
         valid = false
@@ -28,7 +28,7 @@ export default class extends Controller {
     // if the user reached the end of the form
     if (this.index >= this.tabTargets.length) {
       // the form will be submitted before showCurrentTab was called
-      this.element.submit();
+      this.formTarget.submit();
 
       return;
     }
@@ -38,10 +38,23 @@ export default class extends Controller {
   showCurrentTab(index) {
     this.index = index; // index who communicates with nextPrev
     this.tabTargets.forEach((el, i) => {
-      el.classList.toggle("current-tab", this.index == i) // displayig the speciefied tab of the form
+      el.classList.toggle("current-tab", this.index == i); // displayig the speciefied tab of the form
+      $(el).closest('form[data-client-side-validations]').validate();
     })
     // Fixing Prev/Next buttons
-    index === 0 ? this.prevBtnTarget.style.display = "none" : this.prevBtnTarget.style.display = "flex"
+    if (index === 0) {
+      this.prevBtnTarget.style.opacity = 0;
+      this.prevBtnTarget.disabled = true;
+    } else {
+      this.prevBtnTarget.disabled = false;
+      this.prevBtnTarget.style.opacity = 1;
+    }
     index === (this.tabTargets.length - 1) ? this.nextBtnTarget.innerHTML = "Submit" : this.nextBtnTarget.innerHTML = "Next"
+  }
+
+  next(e) {
+    if (e.keyCode == 13) {
+      this.nextBtnTarget.click();
+    }
   }
 }
